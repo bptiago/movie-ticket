@@ -1,7 +1,24 @@
 import java.util.ArrayList;
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        // Files setup
+        ManagerCSV managerCSV = new ManagerCSV();
+
+        // Globais?
+        String separador = ";";
+
+        managerCSV.fileLinesToMatrix(managerCSV.getFileFilmes());
+        // verificar a tipagem dos dados
+        // cinema.filmes = managerCSV.fileLinesToMatrix(managerCSV.getFileFilmes());
+        // a linha acima é pra salvar os dados numa lista
+
 
         Filme filme1 = new Filme();
         filme1.nomeFilme = "A freira 2";
