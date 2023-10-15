@@ -1,10 +1,12 @@
 import java.util.ArrayList;
-class Sessao extends Filme {
+class Sessao {
     String sala;
     String horario;
     int numAssentos;
     ArrayList<Ingresso> ingressos;
     Boolean isDublado;
+    // Pensar em como adicionar um filme
+    // Talvez Filme filme; e herança direta
 
     public Sessao(String sala, String horario, int numAssentos, Boolean isDublado) {
         this.sala = sala;

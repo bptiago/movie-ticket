@@ -47,7 +47,6 @@ public class ManagerCSV {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(linhas);
         return linhas; // linhas é uma matriz com os dados da tabela;
     }
 
