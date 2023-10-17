@@ -1,22 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-
-/**
- *
- * @author danil
- */
 public class TelaSessoes extends javax.swing.JFrame {
-       
+       private ModelSessoes model;
           
     /**
      * Creates new form Sessoes
      */
     public TelaSessoes() {
         Sessoes s = new Sessoes("Monstros SA", "12", "20:00");
-        ModelSessoes model = new ModelSessoes(s);
+        Sessoes t = new Sessoes("Mercenarios 2", "13", "21:00");
+        Sessoes u = new Sessoes("Filme3", "1", "1:00");
+        Sessoes v = new Sessoes("Filme4", "2", "2:00");
+        Sessoes w = new Sessoes("Filme5", "3", "3:00");
+        Sessoes x = new Sessoes("Filme6", "4", "4:00");
+        Sessoes y = new Sessoes("Filme7", "5", "5:00");
+        Sessoes z = new Sessoes("AAAAAAA", "BBBBB", "CCCCCCC");
+        
+        model = new ModelSessoes(s);
+        model.addSessoes(t);
+        model.addSessoes(u);
+        model.addSessoes(v);
+        model.addSessoes(w);
+        model.addSessoes(x);
+        model.addSessoes(y);
+        model.addSessoes(z);
+        
         initComponents();
         tb.setModel(model);
     }
@@ -34,10 +40,11 @@ public class TelaSessoes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tb = new javax.swing.JTable();
         btnMenu = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Filmes  que estão disponíveis hoje!!!");
+        jLabel1.setText("Filmes  que estão em cartaz!!!");
 
         tb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -50,6 +57,11 @@ public class TelaSessoes extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb);
 
         btnMenu.setText("MENU INICIAL");
@@ -59,35 +71,45 @@ public class TelaSessoes extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Comprar sessão");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(btnMenu)
-                .addGap(34, 34, 34))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(99, 99, 99))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(btnMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(jLabel1)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnMenu)
-                        .addGap(30, 30, 30))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnMenu)
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -98,6 +120,22 @@ public class TelaSessoes extends javax.swing.JFrame {
         this.dispose();
         ti.setVisible(true);
     }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        TelaComprarIngresso tci = new TelaComprarIngresso();
+        this.dispose();
+        tci.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbMouseClicked
+        int index = tb.getSelectedRow();
+        if (index >= 0) {
+        Sessoes s = model.returnSessoes(index);
+        System.out.println("Nome do Filme: " + s.getNomeFilme());
+        System.out.println("Sala: " + s.getSala());
+        System.out.println("Horário: " + s.getHorario());
+    }
+    }//GEN-LAST:event_tbMouseClicked
 
     /**
      * @param args the command line arguments
@@ -137,6 +175,7 @@ public class TelaSessoes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMenu;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tb;

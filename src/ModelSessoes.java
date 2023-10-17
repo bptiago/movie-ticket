@@ -1,16 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
-
-/**
- *
- * @author danil
- */
 public class ModelSessoes extends AbstractTableModel {
     
     ArrayList<Sessoes> sessao = new ArrayList();
@@ -20,6 +9,15 @@ public class ModelSessoes extends AbstractTableModel {
     public ModelSessoes(Sessoes s){
         sessao.add(s);
         this.fireTableDataChanged();
+    }
+    
+    public void addSessoes(Sessoes s) {
+        sessao.add(s);
+        this.fireTableDataChanged(); // Atualizar a tabela
+    }
+    
+    public Sessoes returnSessoes(int index){
+        return sessao.get(index);
     }
   
     @Override
