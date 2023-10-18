@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) {
@@ -53,6 +54,19 @@ public class Main {
             cinema.adicionarSessao(new Sessao(nomeFilme, sala, horario, numAssentos, isDublado));
         }
 
+        // Para instanciar o ingresso automaticamente é preciso fazer integração com o Swing
+        Ingresso ingressoTeste = new Ingresso("A Freira 2", "S1");
+
+        // Checa a qual sessão o ingresso pertence
+        // Isso tem que ser feito depois de instanciar o ingresso
+        for (Sessao sessao : cinema.sessoes) {
+            if (Objects.equals(ingressoTeste.getSala(), sessao.getSala())) {
+                System.out.println("Ingresso pertence a sessão " + sessao.getSala());
+                sessao.adicionarIngresso(ingressoTeste);
+                System.out.println(sessao.getIngressos());
+            }
+        }
+
         // PRECISA AUTOMATIZAR O O QUE TÁ ABAIXO AINDA
 //        Ingresso ingresso1 = new Ingresso();
 //        ingresso1.preco = 15.0;
@@ -60,6 +74,5 @@ public class Main {
 //        ingresso1.assento = "A1";
 //        sessao1.adicionarIngresso(ingresso1);
 //
-//        Cinema cinema = new Cinema("Cinema Cinemark", "Rua Danilo Lindão");
     }
 }

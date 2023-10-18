@@ -1,12 +1,11 @@
 import java.util.ArrayList;
 class Sessao {
     private String nomeFilme;
-    private String sala;
+    private String sala; // pode ser um identificador único da sessão?
     private String horario;
     private int numAssentos;
     private boolean isDublado;
-    // Ingresso ingresso;
-    // Pensar em como atrelar o ingresso a uma sessão
+    private ArrayList<Ingresso> ingressos;
 
     public Sessao (String nomeFilme, String sala, String horario, int numAssentos, boolean isDublado){
         this.nomeFilme = nomeFilme;
@@ -14,6 +13,7 @@ class Sessao {
         this.horario = horario;
         this.numAssentos = numAssentos;
         this.isDublado = isDublado;
+        this.ingressos = new ArrayList<>();
     }
 
 
@@ -44,4 +44,8 @@ class Sessao {
     public int getNumAssentos() { return numAssentos; }
 
     public boolean getIsDublado() { return isDublado; }
+
+    public ArrayList<Ingresso> getIngressos() { return ingressos; }
+
+    public void adicionarIngresso(Ingresso ingresso) { ingressos.add(ingresso); }
 }
