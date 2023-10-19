@@ -1,7 +1,7 @@
 class Filme {
-    String nomeFilme;
-    String classificacaoFilme;
-    int anoLancamento;
+    private String nomeFilme;
+    private String classificacaoFilme;
+    private int anoLancamento;
 
     public Filme(String nomeFilme, String classificacaoFilme, int anoLancamento) {
         this.nomeFilme = nomeFilme;

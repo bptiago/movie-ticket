@@ -59,7 +59,7 @@ public class Main {
 
         // Checa a qual sessão o ingresso pertence
         // Isso tem que ser feito depois de instanciar o ingresso
-        for (Sessao sessao : cinema.sessoes) {
+        for (Sessao sessao : cinema.getSessoes()) {
             if (Objects.equals(ingressoTeste.getSala(), sessao.getSala())) {
                 System.out.println("Ingresso pertence a sessão " + sessao.getSala());
                 sessao.adicionarIngresso(ingressoTeste);

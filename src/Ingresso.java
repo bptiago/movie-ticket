@@ -1,8 +1,8 @@
  class Ingresso {
-    double preco;
-    String assento;
-    String nomeFilme;
-    String sala; //identificador único para sessão?
+     private double preco;
+     private String assento;
+     private String nomeFilme;
+     private String sala; //identificador único para sessão?
 
     public Ingresso(String nomeFilme, String sala) {
         this.nomeFilme = nomeFilme;
