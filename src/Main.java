@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,7 +10,7 @@ public class Main {
         ManagerCSV managerCSV = new ManagerCSV();
 
         // Instanciamento de filmes
-        List matrizFilmes = managerCSV.fileLinesToMatrix(managerCSV.getFileFilmes());
+        List matrizFilmes = managerCSV.csvParaMatrizJava(managerCSV.getFileFilmes());
         for (int i = 0; i < matrizFilmes.size(); i++) {
             if (i == 0) continue; // Não lê o título das colunas
 
@@ -30,7 +31,7 @@ public class Main {
         }
 
         // Instanciamento de sessões
-        List matrizSessoes = managerCSV.fileLinesToMatrix(managerCSV.getFileSessoes());
+        List matrizSessoes = managerCSV.csvParaMatrizJava(managerCSV.getFileSessoes());
         for (int i = 0; i < matrizSessoes.size(); i++) {
             if (i == 0) continue; // Não lê o título das colunas
 
@@ -54,11 +55,10 @@ public class Main {
             cinema.adicionarSessao(new Sessao(nomeFilme, sala, horario, numAssentos, isDublado));
         }
 
-        // Para instanciar o ingresso automaticamente é preciso fazer integração com o Swing
-        Ingresso ingressoTeste = new Ingresso("A Freira 2", "S1");
+        // Para instanciar o ingresso automaticamente é preciso fazer integração com o Swing, até lá os inputs vão ser na mão
+        Ingresso ingressoTeste = new Ingresso(19, "Tiago", "232","A Freira 2", "S1", "G12", 20);
 
         // Checa a qual sessão o ingresso pertence
-        // Isso tem que ser feito depois de instanciar o ingresso
         for (Sessao sessao : cinema.getSessoes()) {
             if (Objects.equals(ingressoTeste.getSala(), sessao.getSala())) {
                 System.out.println("Ingresso pertence a sessão " + sessao.getSala());
@@ -67,12 +67,11 @@ public class Main {
             }
         }
 
-        // PRECISA AUTOMATIZAR O O QUE TÁ ABAIXO AINDA
-//        Ingresso ingresso1 = new Ingresso();
-//        ingresso1.preco = 15.0;
-//        ingresso1.tipoIngresso = "Inteira";
-//        ingresso1.assento = "A1";
-//        sessao1.adicionarIngresso(ingresso1);
-//
+        // Escreve um ingresso instanciado no arquivo CSV
+        try {
+            managerCSV.escreverLinhaNoCSV(managerCSV.getFileIngressos(), ingressoTeste.stringDadosDoIngresso());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
