@@ -1,25 +1,25 @@
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 public class ModelSessoes extends AbstractTableModel {
-    
+
     ArrayList<Sessoes> sessao = new ArrayList();
-    
+
     String[] colunas = {"Filme", "Sala", "Horario"};
-    
+
     public ModelSessoes(Sessoes s){
         sessao.add(s);
         this.fireTableDataChanged();
     }
-    
+
     public void addSessoes(Sessoes s) {
         sessao.add(s);
         this.fireTableDataChanged(); // Atualizar a tabela
     }
-    
+
     public Sessoes returnSessoes(int index){
         return sessao.get(index);
     }
-  
+
     @Override
     public int getRowCount() {
         return sessao.size();
@@ -29,7 +29,7 @@ public class ModelSessoes extends AbstractTableModel {
     public int getColumnCount() {
         return colunas.length;
     }
-    
+
     @Override
     public String getColumnName(int Column) {
         return colunas[Column];
@@ -44,5 +44,5 @@ public class ModelSessoes extends AbstractTableModel {
         } else{
             return sessao.get(rowIndex).getHorario();
         }
-}
+    }
 }

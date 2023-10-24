@@ -1,19 +1,19 @@
-public class Pessoa  {
-    protected int idadePessoa;
-    protected String nomePessoa;
-    protected String cpf;
+public class Pessoa {
+    private String idade;
+    private String nome;
+    private String cpf;
 
-    public Pessoa(int idadePessoa, String nomePessoa, String cpf) {
-        this.idadePessoa = idadePessoa;
-        this.nomePessoa = nomePessoa;
+    public Pessoa (String idade, String nome, String cpf){
+        this.idade = idade;
+        this.nome = nome;
         this.cpf = cpf;
     }
 
-    public int getidade(){
-        return idadePessoa;
+    public String getidade(){
+        return idade;
     }
     public String getnome(){
-        return nomePessoa;
+        return nome;
     }
     public String getcpf(){
         return cpf;

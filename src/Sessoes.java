@@ -2,13 +2,13 @@ public class Sessoes {
     private String nomeFilme;
     private String Sala;
     private String horario;
-    
+
     public Sessoes (String nomeFilme, String Sala, String horario){
         this.nomeFilme = nomeFilme;
         this.Sala = Sala;
         this.horario = horario;
     }
-    
+
 
     public String getNomeFilme() {
         return nomeFilme;
@@ -25,7 +25,7 @@ public class Sessoes {
     public void setSala(String Sala) {
         this.Sala = Sala;
     }
-    
+
     public String getHorario() {
         return horario;
     }
@@ -33,7 +33,7 @@ public class Sessoes {
     public void setHorario(String horario) {
         this.horario = horario;
     }
-        
+
 }
 
 
