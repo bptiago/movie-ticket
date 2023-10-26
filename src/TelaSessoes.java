@@ -1,3 +1,6 @@
+
+import java.util.List;
+
 public class TelaSessoes extends javax.swing.JFrame {
     private ModelSessoes model;
 
@@ -5,24 +8,33 @@ public class TelaSessoes extends javax.swing.JFrame {
      * Creates new form Sessoes
      */
     public TelaSessoes() {
-        Sessoes s = new Sessoes("Monstros SA", "12", "20:00");
-        Sessoes t = new Sessoes("Mercenarios 2", "13", "21:00");
-        Sessoes u = new Sessoes("Filme3", "1", "1:00");
-        Sessoes v = new Sessoes("Filme4", "2", "2:00");
-        Sessoes w = new Sessoes("Filme5", "3", "3:00");
-        Sessoes x = new Sessoes("Filme6", "4", "4:00");
-        Sessoes y = new Sessoes("Filme7", "5", "5:00");
-        Sessoes z = new Sessoes("AAAAAAA", "BBBBB", "CCCCCCC");
+        model = new ModelSessoes();
+        ManagerCSV managerCSV = new ManagerCSV();
+        
+        List matrizSessoes = managerCSV.csvParaMatrizJava(managerCSV.getFileSessoes());
+        for (int i = 0; i < matrizSessoes.size(); i++) {
+            if (i == 0) continue; // Não lê o título das colunas
 
-        model = new ModelSessoes(s);
-        model.addSessoes(t);
-        model.addSessoes(u);
-        model.addSessoes(v);
-        model.addSessoes(w);
-        model.addSessoes(x);
-        model.addSessoes(y);
-        model.addSessoes(z);
+            List linhaMatriz = (List) matrizSessoes.get(i);
 
+            String nomeFilme = null;
+            String sala = null;
+            String horario = null;
+            int numAssentos = 0;
+            boolean isDublado = false;
+
+            for (int j = 0; j < linhaMatriz.size(); j++) {
+                switch (j) {
+                    case 0 -> nomeFilme = (String) linhaMatriz.get(j);
+                    case 1 -> sala = (String) linhaMatriz.get(j);
+                    case 2 -> horario = (String) linhaMatriz.get(j);
+                    case 3 -> numAssentos = Integer.parseInt((String) linhaMatriz.get(j));
+                    case 4 -> isDublado = Integer.parseInt((String) linhaMatriz.get(j)) == 1;
+                }
+            }
+            model.addSessao(new Sessao(nomeFilme, sala, horario, numAssentos, isDublado));
+//            cinema.adicionarSessao(new Sessao(nomeFilme, sala, horario, numAssentos, isDublado));
+        }
         initComponents();
         tb.setModel(model);
     }
@@ -44,7 +56,7 @@ public class TelaSessoes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Filmes  que estão em cartaz!!!");
+        jLabel1.setText("Filmes em cartaz.");
 
         tb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -87,16 +99,16 @@ public class TelaSessoes extends javax.swing.JFrame {
                             .addComponent(jButton1)
                             .addComponent(btnMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
+                        .addGap(159, 159, 159)
                         .addComponent(jLabel1)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -118,13 +130,12 @@ public class TelaSessoes extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         int index = tb.getSelectedRow();
-        Sessoes s = model.returnSessoes(index);
-        Sessoes a = new Sessoes(s.getNomeFilme(), s.getSala(), s.getHorario());
+        Sessao sessao = model.returnSessao(index);
         if (index >= 0) {
-            System.out.println("Nome do Filme: " + a.getNomeFilme());
-            System.out.println("Sala: " + a.getSala());
-            System.out.println("Horário: " + a.getHorario());
-            TelaComprarIngresso tci = new TelaComprarIngresso(a);
+            System.out.println("Nome do Filme: " + sessao.getNomeFilme());
+            System.out.println("Sala: " + sessao.getSala());
+            System.out.println("Horário: " + sessao.getHorario());
+            TelaComprarIngresso tci = new TelaComprarIngresso(sessao);
             this.dispose();
             tci.setVisible(true);}
     }

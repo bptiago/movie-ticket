@@ -3,11 +3,11 @@ public class Sessoes {
     private String Sala;
     private String horario;
 
-    public Sessoes (String nomeFilme, String Sala, String horario){
-        this.nomeFilme = nomeFilme;
-        this.Sala = Sala;
-        this.horario = horario;
-    }
+//    public Sessoes (String nomeFilme, String Sala, String horario){
+//        this.nomeFilme = nomeFilme;
+//        this.Sala = Sala;
+//        this.horario = horario;
+//    }
 
 
     public String getNomeFilme() {

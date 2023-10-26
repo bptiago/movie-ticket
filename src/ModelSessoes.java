@@ -2,21 +2,16 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 public class ModelSessoes extends AbstractTableModel {
 
-    ArrayList<Sessoes> sessao = new ArrayList();
+    ArrayList<Sessao> sessao = new ArrayList();
 
     String[] colunas = {"Filme", "Sala", "Horario"};
 
-    public ModelSessoes(Sessoes s){
-        sessao.add(s);
-        this.fireTableDataChanged();
-    }
-
-    public void addSessoes(Sessoes s) {
+    public void addSessao(Sessao s) {
         sessao.add(s);
         this.fireTableDataChanged(); // Atualizar a tabela
     }
 
-    public Sessoes returnSessoes(int index){
+    public Sessao returnSessao(int index){
         return sessao.get(index);
     }
 

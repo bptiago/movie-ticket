@@ -5,11 +5,11 @@ class Ingresso extends Pessoa{
      private String assento;
      private String nomeFilme;
      private String sala; //identificador único para sessão?
+     private Sessao sessao;
 
-    public Ingresso(int idadePessoa, String nomePessoa, String cpf, String nomeFilme, String sala, String assento, double preco) {
+    public Ingresso(int idadePessoa, String nomePessoa, String cpf, Sessao sessao, String assento, double preco) {
         super(idadePessoa, nomePessoa, cpf);
-        this.nomeFilme = nomeFilme;
-        this.sala = sala;
+        this.sessao = sessao;
         this.assento = assento;
         this.preco = preco;
     }

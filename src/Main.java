@@ -56,22 +56,22 @@ public class Main {
         }
 
         // Para instanciar o ingresso automaticamente é preciso fazer integração com o Swing, até lá os inputs vão ser na mão
-        Ingresso ingressoTeste = new Ingresso(19, "Tiago", "232","A Freira 2", "S1", "G12", 20);
-
-        // Checa a qual sessão o ingresso pertence
-        for (Sessao sessao : cinema.getSessoes()) {
-            if (Objects.equals(ingressoTeste.getSala(), sessao.getSala())) {
-                System.out.println("Ingresso pertence a sessão " + sessao.getSala());
-                sessao.adicionarIngresso(ingressoTeste);
-                System.out.println(sessao.getIngressos());
-            }
-        }
-
-        // Escreve um ingresso instanciado no arquivo CSV
-        try {
-            managerCSV.escreverLinhaNoCSV(managerCSV.getFileIngressos(), ingressoTeste.stringDadosDoIngresso());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        Ingresso ingressoTeste = new Ingresso(19, "Tiago", "232","A Freira 2", "S1", "G12", 20);
+//
+//        // Checa a qual sessão o ingresso pertence
+//        for (Sessao sessao : cinema.getSessoes()) {
+//            if (Objects.equals(ingressoTeste.getSala(), sessao.getSala())) {
+//                System.out.println("Ingresso pertence a sessão " + sessao.getSala());
+//                sessao.adicionarIngresso(ingressoTeste);
+//                System.out.println(sessao.getIngressos());
+//            }
+//        }
+//
+//        // Escreve um ingresso instanciado no arquivo CSV
+//        try {
+//            managerCSV.escreverLinhaNoCSV(managerCSV.getFileIngressos(), ingressoTeste.stringDadosDoIngresso());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }
