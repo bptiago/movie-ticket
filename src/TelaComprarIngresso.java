@@ -1,3 +1,6 @@
+
+import java.io.IOException;
+
 public class TelaComprarIngresso extends javax.swing.JFrame {
     Sessao sessao;
 
@@ -11,6 +14,7 @@ public class TelaComprarIngresso extends javax.swing.JFrame {
     public TelaComprarIngresso(Sessao sessao) {
         this();
         this.sessao = sessao;
+        System.out.println(sessao.getNomeFilme());
     }
     
     /**
@@ -232,10 +236,17 @@ public class TelaComprarIngresso extends javax.swing.JFrame {
         // TODO: Calcular preço do ingresso (meia ou inteira) aqui
         
         Ingresso ingresso = new Ingresso(idade, nome, cpf, sessao, assento, 12.99);
-//        TelaConfirmar tc = new TelaConfirmar(pessoa, a);
-//        A tela confirmar ingresso não é mais necessária
-//        this.dispose();
-//        tc.setVisible(true);
+        ManagerCSV managerCSV = new ManagerCSV();
+        try {
+            managerCSV.escreverLinhaNoCSV(managerCSV.getFileIngressos(), ingresso.stringDadosDoIngresso());
+            System.out.println(sessao.getNomeFilme());
+        } catch(IOException e) {
+            e.printStackTrace();
+        }      
+
+        TelaIngresso ti = new TelaIngresso(ingresso);
+        this.dispose();
+        ti.setVisible(true);
     }
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {

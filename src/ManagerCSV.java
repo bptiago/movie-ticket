@@ -54,6 +54,7 @@ public class ManagerCSV {
     public void escreverLinhaNoCSV(File file, String linha) throws IOException {
         FileWriter writer = new FileWriter(file, true);
         // Adiciona linha no final do arquivo existente
+        linha = linha + "\n";
         writer.append(linha);
         // Encerra FileWriter
         writer.flush();

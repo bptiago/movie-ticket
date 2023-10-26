@@ -130,11 +130,14 @@ public class TelaSessoes extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         int index = tb.getSelectedRow();
-        Sessao sessao = model.returnSessao(index);
+        Sessao tab = model.returnSessao(index);
+        Sessao sessao = new Sessao(tab.getNomeFilme(), tab.getSala(), tab.getHorario(), tab.getNumAssentos(), true);
         if (index >= 0) {
             System.out.println("Nome do Filme: " + sessao.getNomeFilme());
             System.out.println("Sala: " + sessao.getSala());
             System.out.println("Horário: " + sessao.getHorario());
+            System.out.println(sessao.getNumAssentos());
+            System.out.println(sessao.getIsDublado());
             TelaComprarIngresso tci = new TelaComprarIngresso(sessao);
             this.dispose();
             tci.setVisible(true);}

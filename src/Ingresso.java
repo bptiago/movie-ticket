@@ -3,8 +3,6 @@ import java.util.ArrayList;
 class Ingresso extends Pessoa{
      private double preco;
      private String assento;
-     private String nomeFilme;
-     private String sala; //identificador único para sessão?
      private Sessao sessao;
 
     public Ingresso(int idadePessoa, String nomePessoa, String cpf, Sessao sessao, String assento, double preco) {
@@ -22,12 +20,12 @@ class Ingresso extends Pessoa{
         return assento;
     }
 
-    public String getNomeFilme() { return nomeFilme; }
+    public String getNomeFilme() { return sessao.getNomeFilme(); }
     public void atualizarPrecoIngresso(double novoPreco) {
         this.preco = novoPreco;
     }
 
-    public String getSala() { return sala; }
+    public String getSala() { return sessao.getSala(); }
     public String stringDadosDoIngresso() {
         ArrayList<String> lista = new ArrayList<>();
 
