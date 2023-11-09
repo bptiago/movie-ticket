@@ -5,24 +5,22 @@ class Sessao {
     private String horario;
     private int numAssentos;
     private boolean isDublado;
+    private double preco;
     private ArrayList<Ingresso> ingressos;
 
-    public Sessao (String nomeFilme, String sala, String horario, int numAssentos, boolean isDublado){
+    public Sessao (String nomeFilme, String sala, String horario, int numAssentos, boolean isDublado, double preco){
         this.nomeFilme = nomeFilme;
         this.sala = sala;
         this.horario = horario;
         this.numAssentos = numAssentos;
         this.isDublado = isDublado;
+        this.preco = preco;
         this.ingressos = new ArrayList<>();
     }
 
 
     public String getNomeFilme() {
         return nomeFilme;
-    }
-
-    public void setNomeFilme(String nomeFilme) {
-        this.nomeFilme = nomeFilme;
     }
 
     public String getSala() {
@@ -37,15 +35,9 @@ class Sessao {
         return horario;
     }
 
-    public void setHorario(String horario) {
-        this.horario = horario;
-    }
-
     public int getNumAssentos() { return numAssentos; }
 
     public boolean getIsDublado() { return isDublado; }
 
-    public ArrayList<Ingresso> getIngressos() { return ingressos; }
-
-    public void adicionarIngresso(Ingresso ingresso) { ingressos.add(ingresso); }
+    public double getPreco() { return preco; }
 }

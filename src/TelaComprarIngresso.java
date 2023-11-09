@@ -232,10 +232,13 @@ public class TelaComprarIngresso extends javax.swing.JFrame {
         String nome = txtNome.getText();
         String cpf = txtCPF.getText();
         String assento = txtAssento.getText();
+
+        double preco = sessao.getPreco();
         
-        // TODO: Calcular preço do ingresso (meia ou inteira) aqui
+        // TODO: fazer um rolldown com opções de tipoPessoa
+        // TODO: calular preõ do ingresso por tipo de pessoa
         
-        Ingresso ingresso = new Ingresso(idade, nome, cpf, sessao, assento, 12.99);
+        Ingresso ingresso = new Ingresso(idade, nome, cpf, "Estudante", sessao, assento, preco);
         ManagerCSV managerCSV = new ManagerCSV();
         try {
             managerCSV.escreverLinhaNoCSV(managerCSV.getFileIngressos(), ingresso.stringDadosDoIngresso());

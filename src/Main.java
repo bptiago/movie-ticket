@@ -52,7 +52,7 @@ public class Main {
                     case 4 -> isDublado = Integer.parseInt((String) linhaMatriz.get(j)) == 1;
                 }
             }
-            cinema.adicionarSessao(new Sessao(nomeFilme, sala, horario, numAssentos, isDublado));
+            cinema.adicionarSessao(new Sessao(nomeFilme, sala, horario, numAssentos, isDublado, 10));
         }
 
         // Para instanciar o ingresso automaticamente é preciso fazer integração com o Swing, até lá os inputs vão ser na mão

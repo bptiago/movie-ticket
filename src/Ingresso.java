@@ -5,8 +5,8 @@ class Ingresso extends Pessoa{
      private String assento;
      private Sessao sessao;
 
-    public Ingresso(int idadePessoa, String nomePessoa, String cpf, Sessao sessao, String assento, double preco) {
-        super(idadePessoa, nomePessoa, cpf);
+    public Ingresso(int idadePessoa, String nomePessoa, String cpf, String tipoPessoa, Sessao sessao, String assento, double preco) {
+        super(idadePessoa, nomePessoa, cpf, tipoPessoa);
         this.sessao = sessao;
         this.assento = assento;
         this.preco = preco;
@@ -35,10 +35,18 @@ class Ingresso extends Pessoa{
         lista.add(getNomeFilme());
         lista.add(getSala());
         lista.add(getAssento());
+        lista.add(getTipoPessoa());
         lista.add(Double.toString(getPreco()));
 
         String linha = String.join(";", lista);
         return linha;
+    }
+
+    @Override
+    void tipoPessoa() {
+        if (getTipoPessoa() == "Criança" || getTipoPessoa() == "PCD" || getTipoPessoa() == "Idoso" || getTipoPessoa() == "Estudante") {
+            this.preco = this.preco / 2;
+        }
     }
 }
 

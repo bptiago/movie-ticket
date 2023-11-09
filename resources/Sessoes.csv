@@ -1,7 +1,7 @@
-NomeFilme;Sala;Horario;numAssentos;isDublado
-A Freira 2;S1;15:00;100;1
-Mercenários 4;S2;18:30;80;0
-Missão: Impossível – Acerto De Contas Parte 1;S3;20:30;100;0
-Gente Grande 2;S4;14:30;70;1
-Oldboy;S5;17:00;100;0
-Parasita;S6;19:30;100;0
+NomeFilme;Sala;Horario;numAssentos;isDublado;PrecoInteira
+A Freira 2;S1;15:00;100;1;19
+Mercenários 4;S2;18:30;80;0;25
+Missão: Impossível – Acerto De Contas Parte 1;S3;20:30;100;0;23
+Gente Grande 2;S4;14:30;70;1;10
+Oldboy;S5;17:00;100;0;22
+Parasita;S6;19:30;100;0;23

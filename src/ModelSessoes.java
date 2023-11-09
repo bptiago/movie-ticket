@@ -4,7 +4,7 @@ public class ModelSessoes extends AbstractTableModel {
 
     ArrayList<Sessao> sessao = new ArrayList();
 
-    String[] colunas = {"Filme", "Sala", "Horario"};
+    String[] colunas = {"Filme", "Sala", "Horario", "Dublado", "Preco"};
 
     public void addSessao(Sessao s) {
         sessao.add(s);
@@ -36,8 +36,16 @@ public class ModelSessoes extends AbstractTableModel {
             return sessao.get(rowIndex).getNomeFilme();
         } else if(columnIndex == 1){
             return sessao.get(rowIndex).getSala();
-        } else{
+        } else if(columnIndex == 2){
             return sessao.get(rowIndex).getHorario();
+        } else if(columnIndex == 3) {
+            if(sessao.get(rowIndex).getIsDublado()) {
+                return "Sim";
+            } else {
+                return "Não";
+            }
+        } else {
+            return sessao.get(rowIndex).getPreco();
         }
     }
 }

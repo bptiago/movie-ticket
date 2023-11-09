@@ -22,6 +22,7 @@ public class TelaSessoes extends javax.swing.JFrame {
             String horario = null;
             int numAssentos = 0;
             boolean isDublado = false;
+            double preco = 0;
 
             for (int j = 0; j < linhaMatriz.size(); j++) {
                 switch (j) {
@@ -30,9 +31,10 @@ public class TelaSessoes extends javax.swing.JFrame {
                     case 2 -> horario = (String) linhaMatriz.get(j);
                     case 3 -> numAssentos = Integer.parseInt((String) linhaMatriz.get(j));
                     case 4 -> isDublado = Integer.parseInt((String) linhaMatriz.get(j)) == 1;
+                    case 5 -> preco = Double.parseDouble((String) linhaMatriz.get(j));
                 }
             }
-            model.addSessao(new Sessao(nomeFilme, sala, horario, numAssentos, isDublado));
+            model.addSessao(new Sessao(nomeFilme, sala, horario, numAssentos, isDublado, preco));
 //            cinema.adicionarSessao(new Sessao(nomeFilme, sala, horario, numAssentos, isDublado));
         }
         initComponents();
@@ -131,13 +133,8 @@ public class TelaSessoes extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         int index = tb.getSelectedRow();
         Sessao tab = model.returnSessao(index);
-        Sessao sessao = new Sessao(tab.getNomeFilme(), tab.getSala(), tab.getHorario(), tab.getNumAssentos(), true);
+        Sessao sessao = new Sessao(tab.getNomeFilme(), tab.getSala(), tab.getHorario(), tab.getNumAssentos(), tab.getIsDublado(), tab.getPreco());
         if (index >= 0) {
-            System.out.println("Nome do Filme: " + sessao.getNomeFilme());
-            System.out.println("Sala: " + sessao.getSala());
-            System.out.println("Horário: " + sessao.getHorario());
-            System.out.println(sessao.getNumAssentos());
-            System.out.println(sessao.getIsDublado());
             TelaComprarIngresso tci = new TelaComprarIngresso(sessao);
             this.dispose();
             tci.setVisible(true);}
