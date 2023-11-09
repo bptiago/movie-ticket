@@ -14,7 +14,9 @@ public class TelaComprarIngresso extends javax.swing.JFrame {
     public TelaComprarIngresso(Sessao sessao) {
         this();
         this.sessao = sessao;
-        System.out.println(sessao.getNomeFilme());
+        labelNomeFilme.setText(sessao.getNomeFilme());
+        labelSalaFilme.setText(sessao.getSala());
+        labelHoraFilme.setText(sessao.getHorario());
     }
     
     /**

@@ -30,6 +30,23 @@ public class Main {
             cinema.adicionarFilme(new Filme(nomeFilme, classificacaoFilme, anoLancamento));
         }
 
+//        String horarioSessao = null;
+//        String nomeFilme = null;
+//
+//        List matrizIngressos = managerCSV.csvParaMatrizJava(managerCSV.getFileIngressos());
+//        for (int i = 0; i < matrizFilmes.size(); i++) {
+//            List linhaMatriz = (List) matrizFilmes.get(i);
+//
+//            for (int j = 0; j < linhaMatriz.size(); j++) {
+//                if (j == 3) {
+//                    horarioSessao = (String) linhaMatriz.get(j);
+//                }
+//                else if (j == 4) {
+//                    nomeFilme = (String) linhaMatriz.get(j);
+//                }
+//            }
+//        }
+
         // Instanciamento de sessões
         List matrizSessoes = managerCSV.csvParaMatrizJava(managerCSV.getFileSessoes());
         for (int i = 0; i < matrizSessoes.size(); i++) {

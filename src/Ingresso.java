@@ -15,6 +15,7 @@ class Ingresso extends Pessoa{
     public double getPreco() {
         return preco;
     }
+    public Sessao getSessao() { return sessao; }
 
     public String getAssento() {
         return assento;
@@ -28,10 +29,10 @@ class Ingresso extends Pessoa{
     public String getSala() { return sessao.getSala(); }
     public String stringDadosDoIngresso() {
         ArrayList<String> lista = new ArrayList<>();
-
         lista.add(getcpf());
         lista.add(getnome());
         lista.add(Integer.toString(getidade()));
+        lista.add(sessao.getHorario());
         lista.add(getNomeFilme());
         lista.add(getSala());
         lista.add(getAssento());

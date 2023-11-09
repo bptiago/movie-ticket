@@ -111,7 +111,7 @@ public class TelaIngresso extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {
-        TelaVisualizarIngresso tvi = new TelaVisualizarIngresso(i);
+        TelaVisualizarIngresso tvi = new TelaVisualizarIngresso();
         this.dispose();
         tvi.setVisible(true);
     }
