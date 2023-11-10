@@ -1,5 +1,6 @@
 
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 public class TelaComprarIngresso extends javax.swing.JFrame {
     Sessao sessao;
@@ -230,12 +231,52 @@ public class TelaComprarIngresso extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAssentoActionPerformed
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {
-        int idade = Integer.parseInt(txtIdade.getText());
+        int idade;
         String nome = txtNome.getText();
         String cpf = txtCPF.getText();
         String assento = txtAssento.getText();
-
         double preco = sessao.getPreco();
+
+        String regexnome = txtNome.getText();
+        String regexidadade = txtIdade.getText();
+        String regexcpf = txtCPF.getText();
+        String regexassento = txtAssento.getText();
+
+        if (txtIdade.getText().matches("^(?:[0-9]|[1-9][0-9]|1[0-4][0-9]|150)$")) {idade = Integer.parseInt(txtIdade.getText());}
+        else{
+            JOptionPane.showMessageDialog(null, "A idade deve ser entre 0 e 150 para ser válida!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            TelaComprarIngresso tci = new TelaComprarIngresso(sessao);
+            this.dispose();
+            tci.setVisible(true);
+            throw new RuntimeException();
+        }
+
+        if (txtNome.getText().matches("[A-Za-z ]+")) {System.out.println("arroz");}
+        else{
+            JOptionPane.showMessageDialog(null, "O nome deve conter somente letras!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            TelaComprarIngresso tci = new TelaComprarIngresso(sessao);
+            this.dispose();
+            tci.setVisible(true);
+            throw new RuntimeException();
+        }
+
+        if (txtCPF.getText().matches("\\d{11}")) {System.out.println("Feijao");}
+        else{
+            JOptionPane.showMessageDialog(null, "O cpf deve 11 exatamente digitos !", "Aviso", JOptionPane.WARNING_MESSAGE);
+            TelaComprarIngresso tci = new TelaComprarIngresso(sessao);
+            this.dispose();
+            tci.setVisible(true);
+            throw new RuntimeException();
+        }
+
+        if (txtAssento.getText().matches("[A-Z]{1}[0-9]{2}")) {}
+        else{
+            JOptionPane.showMessageDialog(null, "O assento deve seguir esse exemplo: 'A53' ", "Aviso", JOptionPane.WARNING_MESSAGE);
+            TelaComprarIngresso tci = new TelaComprarIngresso(sessao);
+            this.dispose();
+            tci.setVisible(true);
+            throw new RuntimeException();
+        }
         
         // TODO: fazer um rolldown com opções de tipoPessoa
         // TODO: calular preõ do ingresso por tipo de pessoa
