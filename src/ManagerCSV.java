@@ -1,3 +1,5 @@
+import exceptions.InvalidFileException;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,14 +26,12 @@ public class ManagerCSV {
         try {
             if (file.createNewFile())
                 System.out.println(file.getName() + " criado");
-            else
-                System.out.println(file.getName() + " já existe");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public List csvParaMatrizJava(File csvFile) {
+    public List csvParaMatrizJava(File csvFile) throws InvalidFileException {
         List<List<String>> linhas = new ArrayList<>(); // Lista bidimensional : [[linhaCSV], [linhaCSV]...];
         String linha;
 
@@ -45,8 +45,12 @@ public class ManagerCSV {
                 List<String> palavras = Arrays.asList(linha.split(";")); // Array gerado pelo split -> List
                 linhas.add(palavras);
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        if (linhas.size() < 1) {
+            throw new InvalidFileException("Arquivo não está povoado e requer adição de conteúdo");
         }
         return linhas; // linhas é uma matriz com os dados da tabela;
     }

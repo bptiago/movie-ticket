@@ -293,8 +293,7 @@ public class TelaComprarIngresso extends javax.swing.JFrame {
             tci.setVisible(true);
             throw new RuntimeException();
         }
-        
-        // TODO: fazer um rolldown com opções de tipoPessoa
+
         if (checkBoxMeiaEntrada.isSelected()) {
             preco = preco / 2;
             tipoPessoa = "Meia-Entrada";

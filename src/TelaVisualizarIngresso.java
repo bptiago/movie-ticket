@@ -1,3 +1,5 @@
+import exceptions.InvalidFileException;
+
 import java.util.List;
 
 public class TelaVisualizarIngresso extends javax.swing.JFrame {
@@ -102,27 +104,31 @@ public class TelaVisualizarIngresso extends javax.swing.JFrame {
         String assento = null;
         double preco = 0;
 
-        List matrizIngressos = managerCSV.csvParaMatrizJava(managerCSV.getFileIngressos());
-        for (int i = 0; i < matrizIngressos.size(); i++) {
-            List linhaMatriz = (List) matrizIngressos.get(i);
+        try {
+            List matrizIngressos = managerCSV.csvParaMatrizJava(managerCSV.getFileIngressos());
+            for (int i = 0; i < matrizIngressos.size(); i++) {
+                List linhaMatriz = (List) matrizIngressos.get(i);
 
-            for (int j = 0; j < linhaMatriz.size(); j++) {
-                if (linhaMatriz.get(0).equals(cpf)) {
-                    foundMatch = true;
-                    cpfPessoa = cpf;
-                    switch (j) {
-                        case 1 -> nomePessoa = (String) linhaMatriz.get(j);
-                        case 2 -> idadePessoa = Integer.parseInt((String) linhaMatriz.get(j));
-                        case 3 -> horarioSessao = (String) linhaMatriz.get(j);
-                        case 4 -> nomeFilme = (String) linhaMatriz.get(j);
-                        case 5 -> salaFilme = (String) linhaMatriz.get(j);
-                        case 6 -> assento = (String) linhaMatriz.get(j);
-                        case 7 -> tipoPessoa = (String) linhaMatriz.get(j);
-                        case 8 -> preco = Double.parseDouble((String) linhaMatriz.get(j));
+                for (int j = 0; j < linhaMatriz.size(); j++) {
+                    if (linhaMatriz.get(0).equals(cpf)) {
+                        foundMatch = true;
+                        cpfPessoa = cpf;
+                        switch (j) {
+                            case 1 -> nomePessoa = (String) linhaMatriz.get(j);
+                            case 2 -> idadePessoa = Integer.parseInt((String) linhaMatriz.get(j));
+                            case 3 -> horarioSessao = (String) linhaMatriz.get(j);
+                            case 4 -> nomeFilme = (String) linhaMatriz.get(j);
+                            case 5 -> salaFilme = (String) linhaMatriz.get(j);
+                            case 6 -> assento = (String) linhaMatriz.get(j);
+                            case 7 -> tipoPessoa = (String) linhaMatriz.get(j);
+                            case 8 -> preco = Double.parseDouble((String) linhaMatriz.get(j));
+                        }
                     }
                 }
+                if (foundMatch) break;
             }
-            if (foundMatch) break;
+        } catch (InvalidFileException e) {
+            e.printStackTrace();
         }
 
         if (foundMatch) {

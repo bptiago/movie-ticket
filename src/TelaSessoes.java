@@ -1,4 +1,6 @@
 
+import exceptions.InvalidFileException;
+
 import java.util.List;
 
 public class TelaSessoes extends javax.swing.JFrame {
@@ -10,32 +12,35 @@ public class TelaSessoes extends javax.swing.JFrame {
     public TelaSessoes() {
         model = new ModelSessoes();
         ManagerCSV managerCSV = new ManagerCSV();
-        
-        List matrizSessoes = managerCSV.csvParaMatrizJava(managerCSV.getFileSessoes());
-        for (int i = 0; i < matrizSessoes.size(); i++) {
-            if (i == 0) continue; // Não lê o título das colunas
 
-            List linhaMatriz = (List) matrizSessoes.get(i);
+        try {
+            List matrizSessoes = managerCSV.csvParaMatrizJava(managerCSV.getFileSessoes());
+            for (int i = 0; i < matrizSessoes.size(); i++) {
 
-            String nomeFilme = null;
-            String sala = null;
-            String horario = null;
-            int numAssentos = 0;
-            boolean isDublado = false;
-            double preco = 0;
+                List linhaMatriz = (List) matrizSessoes.get(i);
 
-            for (int j = 0; j < linhaMatriz.size(); j++) {
-                switch (j) {
-                    case 0 -> nomeFilme = (String) linhaMatriz.get(j);
-                    case 1 -> sala = (String) linhaMatriz.get(j);
-                    case 2 -> horario = (String) linhaMatriz.get(j);
-                    case 3 -> numAssentos = Integer.parseInt((String) linhaMatriz.get(j));
-                    case 4 -> isDublado = Integer.parseInt((String) linhaMatriz.get(j)) == 1;
-                    case 5 -> preco = Double.parseDouble((String) linhaMatriz.get(j));
+                String nomeFilme = null;
+                String sala = null;
+                String horario = null;
+                int numAssentos = 0;
+                boolean isDublado = false;
+                double preco = 0;
+
+                for (int j = 0; j < linhaMatriz.size(); j++) {
+                    switch (j) {
+                        case 0 -> nomeFilme = (String) linhaMatriz.get(j);
+                        case 1 -> sala = (String) linhaMatriz.get(j);
+                        case 2 -> horario = (String) linhaMatriz.get(j);
+                        case 3 -> numAssentos = Integer.parseInt((String) linhaMatriz.get(j));
+                        case 4 -> isDublado = Integer.parseInt((String) linhaMatriz.get(j)) == 1;
+                        case 5 -> preco = Double.parseDouble((String) linhaMatriz.get(j));
+                    }
                 }
-            }
-            model.addSessao(new Sessao(nomeFilme, sala, horario, numAssentos, isDublado, preco));
+                model.addSessao(new Sessao(nomeFilme, sala, horario, numAssentos, isDublado, preco));
 //            cinema.adicionarSessao(new Sessao(nomeFilme, sala, horario, numAssentos, isDublado));
+            }
+        } catch (InvalidFileException e) {
+            e.printStackTrace();
         }
         initComponents();
         tb.setModel(model);
