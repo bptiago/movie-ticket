@@ -49,6 +49,7 @@ public class TelaComprarIngresso extends javax.swing.JFrame {
         labelNomeFilme = new javax.swing.JLabel();
         labelSalaFilme = new javax.swing.JLabel();
         labelHoraFilme = new javax.swing.JLabel();
+        checkBoxMeiaEntrada = new javax.swing.JCheckBox();
 
         jTextField1.setText("jTextField1");
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -119,10 +120,21 @@ public class TelaComprarIngresso extends javax.swing.JFrame {
 
         labelHoraFilme.setText("jLabel11");
 
+        checkBoxMeiaEntrada.setText("Meia-Entrada?");
+        checkBoxMeiaEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxMeiaEntradaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(46, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(45, 45, 45))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,12 +149,9 @@ public class TelaComprarIngresso extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelHoraFilme)))
+                        .addComponent(labelHoraFilme))
+                    .addComponent(checkBoxMeiaEntrada))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(45, 45, 45))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,6 +170,8 @@ public class TelaComprarIngresso extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(labelHoraFilme))
+                .addGap(18, 18, 18)
+                .addComponent(checkBoxMeiaEntrada)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -230,12 +241,17 @@ public class TelaComprarIngresso extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAssentoActionPerformed
 
+    private void checkBoxMeiaEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxMeiaEntradaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkBoxMeiaEntradaActionPerformed
+
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {
         int idade;
         String nome = txtNome.getText();
         String cpf = txtCPF.getText();
         String assento = txtAssento.getText();
         double preco = sessao.getPreco();
+        String tipoPessoa = "";
 
         String regexnome = txtNome.getText();
         String regexidadade = txtIdade.getText();
@@ -279,9 +295,14 @@ public class TelaComprarIngresso extends javax.swing.JFrame {
         }
         
         // TODO: fazer um rolldown com opções de tipoPessoa
-        // TODO: calular preõ do ingresso por tipo de pessoa
+        if (checkBoxMeiaEntrada.isSelected()) {
+            preco = preco / 2;
+            tipoPessoa = "Meia-Entrada";
+        } else {
+            tipoPessoa = "Entrada Inteira";
+        }
         
-        Ingresso ingresso = new Ingresso(idade, nome, cpf, "Estudante", sessao, assento, preco);
+        Ingresso ingresso = new Ingresso(idade, nome, cpf, tipoPessoa, sessao, assento, preco);
         ManagerCSV managerCSV = new ManagerCSV();
         try {
             managerCSV.escreverLinhaNoCSV(managerCSV.getFileIngressos(), ingresso.stringDadosDoIngresso());
@@ -336,6 +357,7 @@ public class TelaComprarIngresso extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComprar;
+    private javax.swing.JCheckBox checkBoxMeiaEntrada;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
