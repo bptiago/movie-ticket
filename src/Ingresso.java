@@ -22,8 +22,8 @@ class Ingresso extends Pessoa{
     }
 
     public String getNomeFilme() { return sessao.getNomeFilme(); }
-    public void atualizarPrecoIngresso(double novoPreco) {
-        this.preco = novoPreco;
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
 
     public String getSala() { return sessao.getSala(); }
@@ -44,9 +44,13 @@ class Ingresso extends Pessoa{
     }
 
     @Override
-    void tipoPessoa() {
-        if (getTipoPessoa() == "Criança" || getTipoPessoa() == "PCD" || getTipoPessoa() == "Idoso" || getTipoPessoa() == "Estudante") {
-            this.preco = this.preco / 2;
+    void tipoPessoa(boolean isMeiaEntrada, double preco) {
+        if (isMeiaEntrada) {
+            setPreco(preco / 2);
+            setTipoPessoa("Meia-Entrada");
+        } else {
+            setPreco(preco);
+            setTipoPessoa("Entrada Inteira");
         }
     }
 }

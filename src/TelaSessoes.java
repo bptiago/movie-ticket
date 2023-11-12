@@ -1,6 +1,3 @@
-
-import exceptions.InvalidFileException;
-
 import java.util.List;
 
 public class TelaSessoes extends javax.swing.JFrame {
@@ -41,6 +38,9 @@ public class TelaSessoes extends javax.swing.JFrame {
             }
         } catch (InvalidFileException e) {
             e.printStackTrace();
+            e.povoarCSV(managerCSV.getFileSessoes());
+            System.out.println("\nO arquivo foi povoado com um insert. Fazer próximas inserções manualmente seguindo o mesmo padrão");
+            System.out.println("Para visualizar a inserção, voltar ao Menu e reabrir a tela de sessões\n");
         }
         initComponents();
         tb.setModel(model);

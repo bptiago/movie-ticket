@@ -11,7 +11,7 @@ abstract class Pessoa {
         this.tipoPessoa = tipoPessoa;
     }
 
-    abstract void tipoPessoa(); // Verá se é criança, PCD, Idoso...
+    abstract void tipoPessoa(boolean isMeiaEntrada, double preco); // Verá se é criança, PCD, Idoso...
 
     public int getidade(){
         return idade;
@@ -25,4 +25,6 @@ abstract class Pessoa {
     public String getTipoPessoa() {
         return tipoPessoa;
     }
+
+    public void setTipoPessoa(String tipoPessoa) { this.tipoPessoa = tipoPessoa; }
 }

@@ -1,22 +1,17 @@
-import exceptions.InvalidFileException;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class ManagerCSV {
-    private final File fileCinemas;
     private final File fileFilmes;
     private final File fileSessoes;
     private final File fileIngressos;
     public ManagerCSV() {
-        this.fileCinemas = new File("resources/Cinemas.csv");
         this.fileFilmes = new File("resources/Filmes.csv");
         this.fileSessoes = new File("resources/Sessoes.csv");
         this.fileIngressos = new File("resources/Ingressos.csv");
 
-        createFile(fileCinemas);
         createFile(fileFilmes);
         createFile(fileSessoes);
         createFile(fileIngressos);
@@ -50,7 +45,7 @@ public class ManagerCSV {
         }
 
         if (linhas.size() < 1) {
-            throw new InvalidFileException("Arquivo não está povoado e requer adição de conteúdo");
+            throw new InvalidFileException("Arquivo .csv não está povoado e requer adição de conteúdo");
         }
         return linhas; // linhas é uma matriz com os dados da tabela;
     }
@@ -63,10 +58,6 @@ public class ManagerCSV {
         // Encerra FileWriter
         writer.flush();
         writer.close();
-    }
-
-    public File getFileCinemas() {
-        return fileCinemas;
     }
 
     public File getFileFilmes() {

@@ -251,12 +251,7 @@ public class TelaComprarIngresso extends javax.swing.JFrame {
         String cpf = txtCPF.getText();
         String assento = txtAssento.getText();
         double preco = sessao.getPreco();
-        String tipoPessoa = "";
-
-        String regexnome = txtNome.getText();
-        String regexidadade = txtIdade.getText();
-        String regexcpf = txtCPF.getText();
-        String regexassento = txtAssento.getText();
+        String tipoPessoa = "null";
 
         if (txtIdade.getText().matches("^(?:[0-9]|[1-9][0-9]|1[0-4][0-9]|150)$")) {idade = Integer.parseInt(txtIdade.getText());}
         else{
@@ -294,14 +289,10 @@ public class TelaComprarIngresso extends javax.swing.JFrame {
             throw new RuntimeException();
         }
 
-        if (checkBoxMeiaEntrada.isSelected()) {
-            preco = preco / 2;
-            tipoPessoa = "Meia-Entrada";
-        } else {
-            tipoPessoa = "Entrada Inteira";
-        }
-        
         Ingresso ingresso = new Ingresso(idade, nome, cpf, tipoPessoa, sessao, assento, preco);
+
+        ingresso.tipoPessoa(checkBoxMeiaEntrada.isSelected(), preco);
+
         ManagerCSV managerCSV = new ManagerCSV();
         try {
             managerCSV.escreverLinhaNoCSV(managerCSV.getFileIngressos(), ingresso.stringDadosDoIngresso());

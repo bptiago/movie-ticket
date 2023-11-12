@@ -1,9 +1,6 @@
-import exceptions.InvalidFileException;
-
 import java.util.List;
 
 public class TelaVisualizarIngresso extends javax.swing.JFrame {
-    Ingresso i;
     /**
      * Creates new form TelaVisualizarIngresso
      */
@@ -132,6 +129,7 @@ public class TelaVisualizarIngresso extends javax.swing.JFrame {
         }
 
         if (foundMatch) {
+            // Talvez dê pra fazer chamada polimórfica aqui
             Sessao sessao = new Sessao(nomeFilme, salaFilme, horarioSessao, 100, true, preco);
             Ingresso ingresso = new Ingresso(idadePessoa, nomePessoa, cpfPessoa, tipoPessoa, sessao, assento, preco);
             TelaVisualizandoIngresso tvi = new TelaVisualizandoIngresso(ingresso);
