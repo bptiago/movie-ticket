@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class TelaVisualizarIngresso extends javax.swing.JFrame {
@@ -60,11 +61,12 @@ public class TelaVisualizarIngresso extends javax.swing.JFrame {
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(135, 135, 135)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1)))
                 .addContainerGap(118, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(135, 135, 135))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,6 +92,9 @@ public class TelaVisualizarIngresso extends javax.swing.JFrame {
         // Flag de checagem
         boolean foundMatch = false;
 
+        // Coleção de Ingressos
+        ArrayList<Ingresso> ingressos = new ArrayList();
+
         // Variáveis ingresso
         String horarioSessao = null;
         String nomeFilme = null;
@@ -105,9 +110,8 @@ public class TelaVisualizarIngresso extends javax.swing.JFrame {
             List matrizIngressos = managerCSV.csvParaMatrizJava(managerCSV.getFileIngressos());
             for (int i = 0; i < matrizIngressos.size(); i++) {
                 List linhaMatriz = (List) matrizIngressos.get(i);
-
-                for (int j = 0; j < linhaMatriz.size(); j++) {
-                    if (linhaMatriz.get(0).equals(cpf)) {
+                if (linhaMatriz.get(0).equals(cpf)) {
+                    for (int j = 0; j < linhaMatriz.size(); j++) {
                         foundMatch = true;
                         cpfPessoa = cpf;
                         switch (j) {
@@ -121,8 +125,10 @@ public class TelaVisualizarIngresso extends javax.swing.JFrame {
                             case 8 -> preco = Double.parseDouble((String) linhaMatriz.get(j));
                         }
                     }
+                    Sessao sessao = new Sessao(nomeFilme, salaFilme, horarioSessao, 100, true, preco);
+                    Ingresso ingresso = new Ingresso(idadePessoa, nomePessoa, cpfPessoa, tipoPessoa, sessao, assento, preco);
+                    ingressos.add(ingresso);
                 }
-                if (foundMatch) break;
             }
         } catch (InvalidFileException e) {
             e.printStackTrace();
@@ -130,9 +136,7 @@ public class TelaVisualizarIngresso extends javax.swing.JFrame {
 
         if (foundMatch) {
             // Talvez dê pra fazer chamada polimórfica aqui
-            Sessao sessao = new Sessao(nomeFilme, salaFilme, horarioSessao, 100, true, preco);
-            Ingresso ingresso = new Ingresso(idadePessoa, nomePessoa, cpfPessoa, tipoPessoa, sessao, assento, preco);
-            TelaVisualizandoIngresso tvi = new TelaVisualizandoIngresso(ingresso);
+            TelaVisualizandoIngresso tvi = new TelaVisualizandoIngresso(ingressos);
             this.dispose();
             tvi.setVisible(true);
         }
